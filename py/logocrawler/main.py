@@ -25,8 +25,8 @@ def get_logo_and_fav(website):
         fav_url='http://www' + website + '/favicon.ico'
 
     
-    logo_tags=html_soup.select('img') //We grab CSS classes
-
+    logo_tags=soup.select('img') 
+    
     for link in logo_tags:
         possible_url= link.get('src')
         if 'logo' in possible_url:
