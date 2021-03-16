@@ -13,11 +13,15 @@ def get_logo_and_fav(website):
     html=requests.get('http://www.'+ website, timeout=7,allow_redirects=True)
     soup = BeautifulSoup(html.text, 'html.parser')
 
-    favicon_tags = soup.findAll('link',{'rel':'icon'})
-
+    fav_attributes=['icon','shortcut icon','apple-touch-icon','apple-touch-icon-precomposed','apple-touch-startup-image','mask-icon','fluid-icon']
+    
+    favicon_tags = soup.findAll('link',{'rel':fav_attributes})
+    
+    fav_extensions=[".jpg",".png", ".gif", ".tif", , ".svg", ".ico",".bmp"]
+    
     for link in favicon_tags:
         possible_url = link.get('href')
-        if 'ico' in possible_url:
+        if any(x in possible_url for x in fav_extensions) :
            fav_url = possible_url
            break
     
