@@ -1,7 +1,7 @@
-import sys
+import csv
 import requests
-import pandas as pd
 from bs4 import BeautifulSoup
+import sys
 
 
 def get_logo_and_fav(website):
