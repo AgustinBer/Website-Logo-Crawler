@@ -3,7 +3,7 @@ let stdenv = pkgs.stdenv; in
 pkgs.mkShell rec {
     name = "interview";
     shellHook = ''
-        source .bashrc
+        source ~/.bashrc
     '';
     buildInputs = (with pkgs; [
         bashInteractive
