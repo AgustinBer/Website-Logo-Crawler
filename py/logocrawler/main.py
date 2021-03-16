@@ -33,7 +33,7 @@ def get_logo_and_fav(website):
            logo_url = possible_url
            break
         
-    if logo_url!='' and website not in logo_url:
+    if logo_url!='' and 'http' not in logo_url:
         logo_url = 'http://www.'+ website + logo_url
 
 
