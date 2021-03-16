@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 def get_logo_and_fav(website):
     
-    brand = web.split('.')[0]
+    brand = website.split('.')[0]
     
     fav_url = ''
     logo_url = ''
