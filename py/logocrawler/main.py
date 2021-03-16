@@ -17,7 +17,7 @@ def get_logo_and_fav(website):
     
     favicon_tags = soup.findAll('link',{'rel':fav_attributes})
     
-    fav_extensions=[".jpg",".png", ".gif", ".tif", , ".svg", ".ico",".bmp"]
+    fav_extensions=[".jpg",".png", ".gif", ".tif" , ".svg", ".ico",".bmp"]
     
     for link in favicon_tags:
         possible_url = link.get('href')
