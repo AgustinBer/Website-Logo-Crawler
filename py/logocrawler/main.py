@@ -1,7 +1,7 @@
 import csv
 import requests
-from bs4 import BeautifulSoup
 import sys
+from bs4 import BeautifulSoup
 
 
 def get_logo_and_fav(website):
