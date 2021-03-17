@@ -10,8 +10,12 @@ pkgs.mkShell rec {
         (pkgs.python3.buildEnv.override {
             ignoreCollisions = true;
             extraLibs = with pkgs.python3.pkgs; [
-                ipython
-                nose
+                csv
+                json
+                requests
+                sys
+                urllib.request
+                BeautifulSoup4
             ];
         })
     ]);
