@@ -11,7 +11,7 @@ def get_soup(url,header):
         urllib.request.Request(url,headers=header)),
         'html.parser')
 
-def bing_image_search(query):
+def bing_search(query):
     query= query.split()
     query='+'.join(query)
     url="http://www.bing.com/images/search?q=" + query + "&FORM=HDRSC2"
@@ -59,10 +59,11 @@ def get_logo_and_fav(website):
         fav_url = f'{actual_link}{fav_url}' 
         #Sometimes, we don't get the absolute path,
         # so we have to build it
-    logo_tags = soup.select('img')
+
+    logo_tags = soup.select(':is(img, svg)[src*="logo"]')
     for link in logo_tags:
-        possible_url = link.get('src')
-        if 'logo' in (possible_url or []):
+        possible_url = link.get('src',"")
+        if 'logo' in possible_url:
             logo_url = possible_url
             break
 
@@ -74,7 +75,7 @@ def get_logo_and_fav(website):
     if logo_url == '':
         company = actual_link.split('.')[1]
         query = f'{company} logo'
-        logo_url=bing_image_search(query) + '    1'
+        logo_url=bing_search(query) + '    1'
         #In case the logo is not found, we use Bing Search Engine
         #to scrape the logo, which is accurate most of the times
 
@@ -83,19 +84,15 @@ def get_logo_and_fav(website):
 
 def main():
     """
-    We should like run the program like this: python3 main.py < path/websites.csv
-    so that it reads csv files from STDIN
+    We should like run the program like this: python3 main.py < path/file.csv
+    so that it reads CSV file from STDIN
     """
     data = sys.stdin.read()
     websites = data.split('\n')
-    i=0
-    with open('results.csv', 'a+') as csvfile:
+    with open('../../results.csv', 'w') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['website', 'logo_url', 'fav_url'])
         for website in websites:
-            i+=1
-            if(i==100):
-                break
             try:
                 print(website, type(website))
                 logo_url, fav_url = get_logo_and_fav(website)
