@@ -75,7 +75,7 @@ def get_logo_and_fav(website):
     if logo_url == '':
         company = actual_link.split('.')[1]
         query = f'{company} logo'
-        logo_url=bing_search(query) + '    1'
+        logo_url=bing_search(query)
         #In case the logo is not found, we use Bing Search Engine
         #to scrape the logo, which is accurate most of the times
 
